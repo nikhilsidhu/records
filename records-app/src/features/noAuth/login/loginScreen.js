@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Divider, Layout, TopNavigation } from '@ui-kitten/components';
-import LoginForm from '../components/LoginForm';
+import LoginForm from './loginForm';
 
 export const LoginScreen = ({ navigation }) => {
   const navigateSignup = () => {

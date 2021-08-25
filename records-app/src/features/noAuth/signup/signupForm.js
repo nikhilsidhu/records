@@ -10,7 +10,7 @@ import {
 import { Input, Button } from '@ui-kitten/components';
 import { useForm, Controller } from 'react-hook-form';
 
-export default function LoginForm({ navigation }) {
+export default function SignupForm({ navigation }) {
   const navigateLogin = () => {
     navigation.navigate('Login');
   };

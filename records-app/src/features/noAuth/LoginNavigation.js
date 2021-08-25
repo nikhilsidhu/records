@@ -1,14 +1,18 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { LoginScreen } from './LoginScreen';
-import { SignupScreen } from './SignupScreen';
-import { SafeAreaView } from 'react-native';
+import { LoginScreen } from './login/loginScreen';
+import { SignupScreen } from './signup/signupScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
 const OnboardingNavigator = () => (
-  <Navigator screenOptions={{ cardStyle: { backgroundColor: '#222B45' } }}>
+  <Navigator
+    screenOptions={{
+      presentation: 'modal',
+      cardStyle: { backgroundColor: '#222B45' },
+    }}
+  >
     <Screen
       options={{ headerTitle: 'Login', headerShown: false }}
       name="Login"

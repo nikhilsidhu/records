@@ -4,10 +4,9 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  Text,
 } from 'react-native';
-import { Button, Divider, Layout, TopNavigation } from '@ui-kitten/components';
-import SignupForm from '../components/SignupForm';
+import { Divider, Layout, TopNavigation } from '@ui-kitten/components';
+import SignupForm from './signupForm';
 
 export const SignupScreen = ({ navigation }) => {
   return (
