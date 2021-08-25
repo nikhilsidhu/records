@@ -1,16 +1,15 @@
-import * as React from "react";
-import { View, Text } from "react-native";
+import React from 'react';
+import { Provider } from 'react-redux';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { LoginNavigator } from './src/screens/LoginNavigation';
 
-export default function App() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
-  );
-}
+export default () => (
+  <>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider {...eva} theme={eva.dark}>
+      <LoginNavigator />
+    </ApplicationProvider>
+  </>
+);
