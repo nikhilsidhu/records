@@ -7,7 +7,7 @@ import { LoginNavigator } from './src/features/noAuth/LoginNavigation';
 import { RecordsNavigator } from './src/features/auth/RecordsNavigation';
 import store from './src/app/store';
 
-const isSignedIn = false;
+const isSignedIn = true;
 
 export default () => (
   <Provider store={store}>

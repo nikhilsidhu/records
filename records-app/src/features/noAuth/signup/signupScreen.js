@@ -14,20 +14,22 @@ export const SignupScreen = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : null}
       style={{ flex: 1 }}
     >
-      <SafeAreaView style={{ flex: 1 }}>
-        <TopNavigation title="Create Account" alignment="center" />
-        <Divider />
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          keyboardDismissMode={
-            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
-          }
-        >
-          <Layout style={styles.layout}>
-            <SignupForm navigation={navigation} />
-          </Layout>
-        </ScrollView>
-      </SafeAreaView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <TopNavigation title="Create Account" alignment="center" />
+          <Divider />
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardDismissMode={
+              Platform.OS === 'ios' ? 'interactive' : 'on-drag'
+            }
+          >
+            <Layout style={styles.layout}>
+              <SignupForm navigation={navigation} />
+            </Layout>
+          </ScrollView>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
