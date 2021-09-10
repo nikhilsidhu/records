@@ -8,6 +8,7 @@ const spotify = axios.create({
 spotify.interceptors.request.use(
   async (req) => {
     try {
+      console.log('\n\n\n\nintercepting!\n\n\n\n');
       // TODO: store this token?
       const token = await spotifyToken();
       req.headers.Authorization = `Bearer ${token}`;

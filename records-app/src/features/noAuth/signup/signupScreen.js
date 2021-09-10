@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { Divider, Layout, TopNavigation } from '@ui-kitten/components';
 import SignupForm from './signupForm';

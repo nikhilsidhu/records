@@ -1,18 +1,24 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Icon, Input } from '@ui-kitten/components';
-import { Feather } from '@expo/vector-icons';
+import { TouchableWithoutFeedback } from '@ui-kitten/components/devsupport';
 
 const SearchIcon = (props) => {
   return <Icon {...props} name="search-outline" />;
 };
 
-export default SearchBar = ({ term, onTermChange, onTermSubmit }) => {
+export default SearchBar = ({ term, onTermChange, onTermSubmit, onClear }) => {
+  const renderClearIcon = (props) => (
+    <TouchableWithoutFeedback onPress={onClear}>
+      <Icon {...props} name="close-outline" />
+    </TouchableWithoutFeedback>
+  );
+
   return (
     <View style={styles.background}>
       <Input
         style={styles.textInput}
-        placeholder="search"
+        placeholder="search music"
         autoCapitalize="none"
         size="large"
         autoCorrect={false}
@@ -21,6 +27,7 @@ export default SearchBar = ({ term, onTermChange, onTermSubmit }) => {
         accessoryLeft={SearchIcon}
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit}
+        accessoryRight={term ? renderClearIcon : null}
       />
     </View>
   );

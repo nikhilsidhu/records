@@ -7,9 +7,9 @@ import {
   Icon,
 } from '@ui-kitten/components';
 import { SafeAreaView, View } from 'react-native';
-import { homeScreen } from './home/homeScreen';
-import { searchScreen } from './search/searchScreen';
-import { profileScreen } from './profile/profileScreen';
+import { SearchStackScreen } from './search/searchScreen';
+import { ProfileStackScreen } from './profile/profileScreen';
+import { HomeStackScreen } from './home/homeScreen';
 import { settingsScreen } from './settings/settingsScreen';
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -43,20 +43,21 @@ const BottomNavigator = () => (
       cardStyle: { backgroundColor: '#222B45' },
     }}
     tabBar={(props) => <BottomTabBar {...props} />}
+    sceneContainerStyle={{ cardStyle: { backgroundColor: '#222B45' } }}
   >
     <Screen
-      name="Home"
-      component={homeScreen}
-      options={{ headerTitle: 'Home', headerShown: false }}
-    />
-    <Screen
-      name="Search"
-      component={searchScreen}
+      name="HomeStack"
+      component={HomeStackScreen}
       options={{ headerTitle: 'Search', headerShown: false }}
     />
     <Screen
-      name="Profile"
-      component={profileScreen}
+      name="SearchStack"
+      component={SearchStackScreen}
+      options={{ headerTitle: 'Search', headerShown: false }}
+    />
+    <Screen
+      name="ProfileStack"
+      component={ProfileStackScreen}
       options={{ headerTitle: 'Profile', headerShown: false }}
     />
     <Screen
@@ -66,6 +67,8 @@ const BottomNavigator = () => (
     />
   </Navigator>
 );
+
+// TODO: pass in getMusicDetails as prop to screens
 
 export const RecordsNavigator = () => (
   <NavigationContainer>

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Layout, Text } from '@ui-kitten/components';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import SearchResultCard from './searchResultCard';
+import { useNavigation } from '@react-navigation/native';
 
-export default SearchResultList = ({ results, navigation }) => {
+export default SearchResultList = ({ results }) => {
   if (!results.length) return null;
+  const navigation = useNavigation();
+  console.log(results[0]);
 
   return (
     <>
@@ -14,7 +16,11 @@ export default SearchResultList = ({ results, navigation }) => {
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Music Details', { item: item })
+              }
+            >
               <SearchResultCard result={item} />
             </TouchableOpacity>
           );

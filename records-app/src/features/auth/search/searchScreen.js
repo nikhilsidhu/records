@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { Layout, Divider } from '@ui-kitten/components';
+import { Layout } from '@ui-kitten/components';
 import SearchBar from './searchBar';
 import {
   SafeAreaView,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
+  StyleSheet,
 } from 'react-native';
 import useSpotifySearch from './useSpotifySearch';
 import SearchResultList from './searchResultList';
+import { StackScreen } from '../createStackScreen';
 
-export const searchScreen = () => {
+const searchScreen = () => {
   const [query, setQuery] = useState('');
   const [searchSpotify, results, errorMsg] = useSpotifySearch();
 
   const filterResultType = (type) => {
-    console.log(JSON.stringify(results, null, 2));
+    // console.log(JSON.stringify(results, null, 2));
     // type === 'album' | 'track'
     return results.filter((result) => {
       return result.type === type && result.album_type === type;
@@ -40,6 +41,7 @@ export const searchScreen = () => {
               term={query}
               onTermChange={setQuery}
               onTermSubmit={() => searchSpotify(query)}
+              onClear={() => setQuery('')}
             />
           </Layout>
           <Layout style={{ flex: 1 }}>
@@ -49,4 +51,8 @@ export const searchScreen = () => {
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
+};
+
+export const SearchStackScreen = () => {
+  return <StackScreen recordsScreen={searchScreen} screenName="Search" />;
 };

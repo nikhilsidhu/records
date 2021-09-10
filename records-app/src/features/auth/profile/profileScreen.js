@@ -14,10 +14,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { StackScreen } from '../createStackScreen';
 
 const FollowIcon = (props) => <Icon {...props} name="person-add-outline" />;
 
-export const profileScreen = () => (
+const profileScreen = () => (
   <View style={{ backgroundColor: '#222B45', flex: 1 }}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -95,3 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export const ProfileStackScreen = () => {
+  return <StackScreen recordsScreen={profileScreen} screenName="Profile" />;
+};
