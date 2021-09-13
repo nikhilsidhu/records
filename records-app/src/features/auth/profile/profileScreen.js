@@ -1,25 +1,17 @@
 import React from 'react';
-import {
-  Layout,
-  Text,
-  Avatar,
-  Button,
-  Divider,
-  Icon,
-} from '@ui-kitten/components';
+import { Layout, Text, Avatar, Button, Icon } from '@ui-kitten/components';
 import {
   KeyboardAvoidingView,
   ScrollView,
   SafeAreaView,
   StyleSheet,
-  View,
 } from 'react-native';
 import { StackScreen } from '../createStackScreen';
 
 const FollowIcon = (props) => <Icon {...props} name="person-add-outline" />;
 
 const profileScreen = () => (
-  <View style={{ backgroundColor: '#222B45', flex: 1 }}>
+  <Layout style={{ flex: 1 }}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : null}
       style={{ flex: 1 }}
@@ -50,16 +42,15 @@ const profileScreen = () => (
             </Button>
           </Layout>
         </Layout>
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          keyboardDismissMode={
-            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
-          }
-        ></ScrollView>
       </SafeAreaView>
     </KeyboardAvoidingView>
-  </View>
+  </Layout>
 );
+
+// <ScrollView
+//   contentContainerStyle={{ flexGrow: 1 }}
+//   keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+// ></ScrollView>
 
 const styles = StyleSheet.create({
   container: {
@@ -72,8 +63,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: 15,
-    borderWidth: 2,
-    borderColor: 'red',
   },
   name: {
     alignSelf: 'center',
@@ -91,8 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   topInfo: {
-    borderColor: 'red',
-    borderWidth: 1,
     alignItems: 'center',
   },
 });

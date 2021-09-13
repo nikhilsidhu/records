@@ -25,31 +25,33 @@ const searchScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      style={{ flex: 1, backgroundColor: '#222B45' }}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Layout
-            style={{
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-            }}
-          >
-            <SearchBar
-              term={query}
-              onTermChange={setQuery}
-              onTermSubmit={() => searchSpotify(query)}
-              onClear={() => setQuery('')}
-            />
-          </Layout>
-          <Layout style={{ flex: 1 }}>
-            <SearchResultList results={filterResultType('album')} />
-          </Layout>
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    <Layout style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        style={{ flex: 1 }}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <SafeAreaView style={{ flex: 1 }}>
+            <Layout
+              style={{
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
+            >
+              <SearchBar
+                term={query}
+                onTermChange={setQuery}
+                onTermSubmit={() => searchSpotify(query)}
+                onClear={() => setQuery('')}
+              />
+            </Layout>
+            <Layout style={{ flex: 1 }}>
+              <SearchResultList results={filterResultType('album')} />
+            </Layout>
+          </SafeAreaView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </Layout>
   );
 };
 

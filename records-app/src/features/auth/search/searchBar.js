@@ -2,15 +2,18 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Icon, Input } from '@ui-kitten/components';
 import { TouchableWithoutFeedback } from '@ui-kitten/components/devsupport';
+import { default as theme } from '../../../../assets/records-theme.json';
 
 const SearchIcon = (props) => {
-  return <Icon {...props} name="search-outline" />;
+  return (
+    <Icon {...props} fill={theme['color-basic-100']} name="search-outline" />
+  );
 };
 
 export default SearchBar = ({ term, onTermChange, onTermSubmit, onClear }) => {
   const renderClearIcon = (props) => (
     <TouchableWithoutFeedback onPress={onClear}>
-      <Icon {...props} name="close-outline" />
+      <Icon {...props} fill={theme['color-basic-100']} name="close-outline" />
     </TouchableWithoutFeedback>
   );
 
@@ -37,12 +40,12 @@ const styles = StyleSheet.create({
   background: {
     flexDirection: 'row',
     height: 50,
-    borderRadius: 10,
     margin: 10,
   },
   textInput: {
     flex: 1,
     fontSize: 18,
+    backgroundColor: theme['color-basic-800'],
   },
   icon: {
     alignSelf: 'center',

@@ -5,50 +5,75 @@ import {
   BottomNavigation,
   BottomNavigationTab,
   Icon,
+  Layout,
+  Text,
 } from '@ui-kitten/components';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { SearchStackScreen } from './search/searchScreen';
 import { ProfileStackScreen } from './profile/profileScreen';
 import { HomeStackScreen } from './home/homeScreen';
 import { settingsScreen } from './settings/settingsScreen';
+import { default as theme } from '../../../assets/records-theme.json';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-const HomeIcon = (props) => <Icon {...props} name="home-outline" />;
-const SearchIcon = (props) => <Icon {...props} name="search-outline" />;
-const ProfileIcon = (props) => <Icon {...props} name="person-outline" />;
-const SettingsIcon = (props) => <Icon {...props} name="settings-outline" />;
-
 const BottomTabBar = ({ navigation, state }) => {
+  const pulseIconRef = React.useRef();
+
+  const getBottomIcon = (props) => {
+    return (
+      <Icon
+        {...props}
+        ref={pulseIconRef}
+        animation="pulse"
+        fill={theme['color-basic-100']}
+        name={props.iconName}
+      />
+    );
+  };
+
   return (
-    <View style={{ flex: 0, backgroundColor: '#222B45' }}>
+    <Layout>
       <SafeAreaView>
         <BottomNavigation
           selectedIndex={state.index}
           onSelect={(index) => navigation.navigate(state.routeNames[index])}
+
+          //TODO: pop to top
+          // onSelect={(index) => {
+          //   state.index === index
+          //     ? navigation.popToTop()
+          //     : navigation.navigate(state.routeNames[index]);
+          // }}
         >
-          <BottomNavigationTab title="Home" icon={HomeIcon} />
-          <BottomNavigationTab title="Search" icon={SearchIcon} />
-          <BottomNavigationTab title="Profile" icon={ProfileIcon} />
-          <BottomNavigationTab title="Settings" icon={SettingsIcon} />
+          <BottomNavigationTab
+            title={(evaProps) => <Text category="s2">Home</Text>}
+            icon={getBottomIcon({ iconName: 'home-outline' })}
+          />
+          <BottomNavigationTab
+            title={(evaProps) => <Text category="s2">Search</Text>}
+            icon={getBottomIcon({ iconName: 'search-outline' })}
+          />
+          <BottomNavigationTab
+            title={(evaProps) => <Text category="s2">Profile</Text>}
+            icon={getBottomIcon({ iconName: 'person-outline' })}
+          />
+          <BottomNavigationTab
+            title={(evaProps) => <Text category="s2">Settings</Text>}
+            icon={getBottomIcon({ iconName: 'settings-outline' })}
+          />
         </BottomNavigation>
       </SafeAreaView>
-    </View>
+    </Layout>
   );
 };
 
 const BottomNavigator = () => (
-  <Navigator
-    screenOptions={{
-      cardStyle: { backgroundColor: '#222B45' },
-    }}
-    tabBar={(props) => <BottomTabBar {...props} />}
-    sceneContainerStyle={{ cardStyle: { backgroundColor: '#222B45' } }}
-  >
+  <Navigator tabBar={(props) => <BottomTabBar {...props} />}>
     <Screen
       name="HomeStack"
       component={HomeStackScreen}
-      options={{ headerTitle: 'Search', headerShown: false }}
+      options={{ headerTitle: 'Home', headerShown: false }}
     />
     <Screen
       name="SearchStack"

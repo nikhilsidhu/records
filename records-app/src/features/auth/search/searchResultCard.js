@@ -23,10 +23,8 @@ export default SearchResultCard = ({ result }) => {
         flex: 1,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        borderWidth: 2,
-        borderColor: '#151A30',
         marginHorizontal: 15,
-        marginVertical: 5,
+        marginBottom: 5,
       }}
     >
       <Layout
