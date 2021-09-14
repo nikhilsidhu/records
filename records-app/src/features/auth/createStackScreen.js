@@ -8,8 +8,12 @@ export const StackScreen = ({ recordsScreen, screenName }) => {
   const musicDetails = getMusicDetails(ScreenStack);
 
   return (
-    <ScreenStack.Navigator screenOptions={{ headerShown: false }}>
-      <ScreenStack.Screen component={recordsScreen} name={screenName} />
+    <ScreenStack.Navigator>
+      <ScreenStack.Screen
+        options={{ headerShown: false }}
+        component={recordsScreen}
+        name={screenName}
+      />
       {musicDetails}
     </ScreenStack.Navigator>
   );

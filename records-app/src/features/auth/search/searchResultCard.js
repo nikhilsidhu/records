@@ -1,22 +1,9 @@
 import React from 'react';
 import { Layout, Text } from '@ui-kitten/components';
 import { Image, StyleSheet } from 'react-native';
+import { listArtists } from '../listArtists';
 
 export default SearchResultCard = ({ result }) => {
-  const listArtists = (artists) => {
-    const numArtists = artists.length;
-
-    if (numArtists === 1) return <Text>{artists[0].name}</Text>;
-
-    var artistList = '';
-    for (var i = 0; i < numArtists; i++) {
-      if (i === numArtists - 1) artistList += `& ${artists[i].name}`;
-      else if (i === numArtists - 2) artistList += `${artists[i].name} `;
-      else artistList += `${artists[i].name}, `;
-    }
-    return <Text category="s1">{artistList}</Text>;
-  };
-
   return (
     <Layout
       style={{

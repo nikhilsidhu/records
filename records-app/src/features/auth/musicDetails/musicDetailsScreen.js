@@ -1,11 +1,32 @@
 import React from 'react';
-import { Layout, Text } from '@ui-kitten/components';
+import {
+  Layout,
+  Text,
+  Icon,
+  TopNavigation,
+  TopNavigationAction,
+} from '@ui-kitten/components';
 import { StyleSheet, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Rating } from 'react-native-ratings';
 import { default as theme } from '../../../../assets/records-theme.json';
+import { listArtists } from '../listArtists';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const musicDetailsScreen = ({ route }) => {
+// TODO: dynamic bkgd color
+// import ImageColors from 'react-native-image-colors';
+
+const BackIcon = (props) => <Icon {...props} name="arrow-ios-back" />;
+
+const BackAction = () => {
+  return <TopNavigationAction icon={BackIcon} onPress={() => alert('todo')} />;
+};
+
+const TopNavigationComponent = () => (
+  <TopNavigation accessoryLeft={BackAction} />
+);
+
+const musicDetailsScreen = ({ navigation, route }) => {
   const { name, images, artists } = route.params.item;
   const ratingCompleted = (rating) => {
     console.log('rating is: ' + rating);
@@ -15,21 +36,24 @@ const musicDetailsScreen = ({ route }) => {
     <SafeAreaView
       style={{ flex: 1, backgroundColor: theme['color-basic-800'] }}
     >
+      <TopNavigationComponent />
       <Layout style={styles.container}>
         <Image source={{ uri: images[0].url }} style={styles.image} />
         <Layout style={styles.title}>
-          <Text textAlign="center" writingDirection="rtl" category="h1">
+          <Text style={{ textAlign: 'center', marginBottom: 10 }} category="h1">
             {name}
           </Text>
-          <Text category="h6">{artists[0].name}</Text>
+          {listArtists(artists)}
           <Rating
             showRating
             onFinishRating={ratingCompleted}
             type="heart"
             tintColor={theme['color-basic-800']}
             style={{ paddingVertical: 10 }}
-            ratingCount="10"
-            imageSize={25}
+            ratingCount="5"
+            imageSize={50}
+            fractions={1}
+            jumpValue={0.5}
           />
         </Layout>
       </Layout>
@@ -65,7 +89,11 @@ export const getMusicDetails = (Stack) => {
       name="Music Details"
       component={musicDetailsScreen}
       options={{
-        cardStyle: { backgroundColor: '#22245B' },
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: theme['color-basic-800'],
+        },
+        title: '',
       }}
     />
   );
